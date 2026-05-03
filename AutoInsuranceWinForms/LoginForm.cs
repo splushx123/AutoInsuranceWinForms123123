@@ -44,6 +44,7 @@ namespace AutoInsuranceWinForms
             var layout = new TableLayoutPanel { Dock = DockStyle.Top, Height = 220, ColumnCount = 2, Padding = new Padding(0, 12, 0, 0) };
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            _txtEmail.Dock = DockStyle.Fill;
             layout.Controls.Add(new Label { Text = "E-mail", AutoSize = true, Padding = new Padding(0, 8, 0, 0) }, 0, 0);
             layout.Controls.Add(_txtEmail, 1, 0);
             layout.Controls.Add(new Label { Text = "Пароль", AutoSize = true, Padding = new Padding(0, 8, 0, 0) }, 0, 1);
@@ -53,23 +54,23 @@ namespace AutoInsuranceWinForms
             _txtPassword.Dock = DockStyle.None;
             _txtPassword.Margin = new Padding(0);
 
-            _passwordWrap.Width = _txtEmail.Width + 2;
+            _passwordWrap.Width = _txtEmail.Width;
             _passwordWrap.Height = _txtEmail.Height;
             _passwordWrap.AutoSize = false;
-            _passwordWrap.Anchor = AnchorStyles.Left;
-            _passwordWrap.Margin = new Padding(0);
+            _passwordWrap.Dock = DockStyle.Fill;
+            _passwordWrap.Margin = _txtEmail.Margin;
             _passwordWrap.Padding = new Padding(0);
             _passwordWrap.FlowDirection = FlowDirection.LeftToRight;
             _passwordWrap.WrapContents = false;
             _passwordWrap.BackColor = Color.White;
             _passwordWrap.BorderStyle = BorderStyle.FixedSingle;
             _txtPassword.Location = new Point(0, 0);
-            _txtPassword.Width = _passwordWrap.Width - 24;
+            _txtPassword.Width = _passwordWrap.Width - 26;
             _txtPassword.Height = _txtEmail.Height - 2;
             _txtPassword.Margin = new Padding(8, 4, 0, 0);
 
             _btnTogglePassword.Dock = DockStyle.None;
-            _btnTogglePassword.Width = 18;
+            _btnTogglePassword.Width = 20;
             _btnTogglePassword.Height = _txtPassword.Height;
             _btnTogglePassword.FlatStyle = FlatStyle.Flat;
             _btnTogglePassword.FlatAppearance.BorderSize = 0;
@@ -86,7 +87,7 @@ namespace AutoInsuranceWinForms
                 _btnTogglePassword.Text = "👁";
             };
 
-            _btnTogglePassword.Margin = new Padding(0, 5, 2, 0);
+            _btnTogglePassword.Margin = new Padding(0, 5, 0, 0);
             _passwordWrap.Controls.Add(_txtPassword);
             _passwordWrap.Controls.Add(_btnTogglePassword);
             layout.Controls.Add(_passwordWrap, 1, 1);
@@ -126,9 +127,9 @@ namespace AutoInsuranceWinForms
 
         private void ApplyPasswordWidthFromEmail()
         {
-            _passwordWrap.Width = _txtEmail.Width + 2;
+            _passwordWrap.Width = _txtEmail.Width;
             _passwordWrap.Height = _txtEmail.Height;
-            _txtPassword.Width = _passwordWrap.Width - _btnTogglePassword.Width - 12;
+            _txtPassword.Width = _passwordWrap.ClientSize.Width - _btnTogglePassword.Width - 8;
             _btnTogglePassword.Height = _txtPassword.Height;
         }
 
